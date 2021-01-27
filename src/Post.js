@@ -17,7 +17,7 @@ function Post() {
             
             <img
               className="post__image"
-              src="https://images.unsplash.com/photo-1609953398453-c3fc0a7be8e1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&auto=format&fit=crop&w=500&q=60"
+              src="https://firebasestorage.googleapis.com/v0/b/spotlight-flutter.appspot.com/o/events%2FWzIydLwLYFR5tJnEHdue3uCX1sQ2%2Fimage_picker2541470734286195538.jpg?alt=media&token=de965f71-fec7-4990-b8c1-c6f07e3da455"
               alt=""
             />
             {/* image */}
