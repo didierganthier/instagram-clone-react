@@ -5,12 +5,14 @@ import './Post.css'
 function Post() {
     return (
         <div className="post">
-            <Avatar
-              className="post__avatar"
-              alt="{username}"
-              src="/static/images/avatar/1.jpg"
-            />
-            <h3>didierganthier</h3>
+            <div className="post__header">
+              <Avatar
+                className="post__avatar"
+                alt="Didier"
+                src="https://media-exp1.licdn.com/dms/image/C4E03AQFxYPWm9sWTfQ/profile-displayphoto-shrink_800_800/0/1607374241023?e=1617235200&v=beta&t=RnPBUKACSpr4bb9mNut-T8nYuBlZdaMciANsYmFm1yo"
+              />
+              <h3>didierganthier</h3>
+            </div>
             {/* header -> avatar + username */}
             
             <img

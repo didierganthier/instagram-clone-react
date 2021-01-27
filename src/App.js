@@ -15,8 +15,8 @@ function App() {
       <h1>Let's build an Instagram Clone with React 🖖</h1>
 
       <Post/>
-      {/* Posts */}
-      {/* Posts */}
+      <Post/>
+      <Post/>
     </div>
   );
 }
