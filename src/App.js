@@ -4,7 +4,7 @@ import Post from "./Post";
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { db } from "./firebase";
-import { Button } from '@material-ui/core';
+import { Button, Input } from '@material-ui/core';
 
 
 function getModalStyle() {
@@ -31,9 +31,12 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const modalStyle = getModalStyle();
+  const [modalStyle] = useState(getModalStyle);
   const [posts, setPosts] = useState([]);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   // useEffect -> runs a piece of code based on a specific condition
   useEffect(() => {
@@ -57,7 +60,32 @@ function App() {
         open={open}
         onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
-          <h2 id="simple-modal-title">Text in a modal</h2>
+          <center>
+            <img
+              className="app__headerImage"
+              src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+              alt=""
+            />
+          </center>
+          <Input
+              placeholder="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <Input
+              placeholder="email"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              placeholder="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Button onClick={signUp}>Sign Up</Button>
         </div>
       </Modal>
 
