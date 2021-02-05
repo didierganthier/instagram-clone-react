@@ -60,6 +60,7 @@ function App() {
         open={open}
         onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
+          <form className="app__signup">
           <center>
             <img
               className="app__headerImage"
@@ -86,6 +87,7 @@ function App() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <Button onClick={signUp}>Sign Up</Button>
+          </form>
         </div>
       </Modal>
 
