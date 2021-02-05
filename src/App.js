@@ -3,7 +3,7 @@ import './App.css';
 import Post from "./Post";
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { db } from "./firebase";
+import { db, auth } from "./firebase";
 import { Button, Input } from '@material-ui/core';
 
 
@@ -51,7 +51,10 @@ function App() {
   }, [])
 
   const signUp = (event) => {
+    event.preventDefault();
 
+    auth.createUserWithEmailAndPassword(email, password)
+    .catch((error) => alert(error.message))
   }
 
   return (
