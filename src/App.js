@@ -34,6 +34,7 @@ function App() {
   const [modalStyle] = useState(getModalStyle);
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
+  const [openSignIn, setOpenSignIn] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -128,7 +129,14 @@ function App() {
         />
       </div>
       
-      <Button onClick={()=> setOpen(true)}>Sign Up</Button>
+      {user? (
+        <Button onClick={()=> auth.signOut()}>Logout</Button>
+      ): (
+        <div className="app__loginContainer">
+          <Button onClick={()=> setOpenSignIn(true)}>Sign In</Button>
+          <Button onClick={()=> setOpen(true)}>Sign Up</Button>
+        </div>
+      )}
 
       <h1>Let's build an Instagram Clone with React 🖖</h1>
 
