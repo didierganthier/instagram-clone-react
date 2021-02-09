@@ -37,6 +37,27 @@ function App() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsuscribe = auth.onAuthStateChanged((authUser) => {
+      if(authUser){
+        //user has logged in...
+        console.log(authUser);
+        setUser(authUser);
+      } 
+      else 
+      {
+        //user has logged out...
+        setUser(null);
+      }
+
+      return () => {
+        //perform some cleanup actions
+        unsuscribe();
+      }
+    })
+  }, [user, username])
 
   // useEffect -> runs a piece of code based on a specific condition
   useEffect(() => {
@@ -54,6 +75,11 @@ function App() {
     event.preventDefault();
 
     auth.createUserWithEmailAndPassword(email, password)
+    .then((authUser) => {
+      return authUser.user.updateProfile({
+        displayName: username,
+      })
+    })
     .catch((error) => alert(error.message))
   }
 
