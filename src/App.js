@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { db, auth } from "./firebase";
 import { Button, Input } from '@material-ui/core';
+import InstagramEmbed from 'react-instagram-embed';
 import ImageUpload from './ImageUpload';
 
 
@@ -183,6 +184,20 @@ function App() {
           ))
         }
       </div>
+
+      <InstagramEmbed
+        url='https://www.instagram.com/p/CI1GVhZJCvS/'
+        clientAccessToken='IGQVJVVllXOXhDS634hgdf83hjdj2Uprc3o5T3lBNDZAVTmNWSDJJZA1dfRFo3SGpjMDBxREFYb2ZAGQldJTi1rS2pITGpOVDNhN1VPVTFrSHhFNWhjOTl0NVlvMVNBOGU1Q2VERXJOaFN4VUNfcDQ0amlB'
+        maxWidth={320}
+        hideCaption={false}
+        containerTagName='div'
+        protocol=''
+        injectScript
+        onLoading={() => {}}
+        onSuccess={() => {}}
+        onAfterRender={() => {}}
+        onFailure={() => {}}
+      />
 
       { user?.displayName? (
         <ImageUpload username={user.displayName}/>
