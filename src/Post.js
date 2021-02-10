@@ -1,6 +1,7 @@
 import { Avatar } from '@material-ui/core';
 import React from 'react';
 import { useState, useEffect } from "react";
+import firebase from "firebase";
 import { db } from './firebase';
 import './Post.css'
 
@@ -15,6 +16,7 @@ function Post({ username, caption, imageUrl, user, postId, }) {
           .collection("posts")
           .doc(postId)
           .collection("comments")
+          .orderBy('timestamp')
           .onSnapshot((snapshot) => {
             setComments(snapshot.docs.map((doc) => doc.data()));
           });
@@ -30,6 +32,7 @@ function Post({ username, caption, imageUrl, user, postId, }) {
       db.collection("posts").doc(postId).collection("comments").add({
         text: comment,
         username: user?.displayName,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
       setComment('');
     }
