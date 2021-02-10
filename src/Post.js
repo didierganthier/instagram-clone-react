@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { db } from './firebase';
 import './Post.css'
 
-function Post({ username, caption, imageUrl, key, postId }) {
+function Post({ username, caption, imageUrl, user, postId, }) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
 
@@ -25,7 +25,13 @@ function Post({ username, caption, imageUrl, key, postId }) {
     }, [postId])
 
     const postComment = (event) => {
+      event.preventDefault();
 
+      db.collection("posts").doc(postId).collection("comments").add({
+        text: comment,
+        username: user?.displayName,
+      });
+      setComment('');
     }
 
     return (
@@ -47,7 +53,21 @@ function Post({ username, caption, imageUrl, key, postId }) {
 
             <h4 className="post__text"><strong>{username}: </strong>{caption}</h4>
 
-            <form className="post__commentBox">
+            {
+              <div className="post__comments">
+                {
+                  comments.map((comment) => (
+                    <p className="comment_text">
+                      <b>{comment.username}</b> {comment.text}
+                    </p>
+                  ))
+                }
+              </div>
+            }
+
+            {
+              user? (
+                <form className="post__commentBox">
               <input
                 className="post__input"
                 type="text"
@@ -64,6 +84,9 @@ function Post({ username, caption, imageUrl, key, postId }) {
                 Post
               </button>
             </form>
+              ):
+              <p></p>
+            }
         </div>
     );
 }
